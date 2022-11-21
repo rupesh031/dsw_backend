@@ -8,6 +8,18 @@ const Admin = require("../models/admin");
 router.post("/", (req, res, next) => {
   console.log("Signup Request");
   console.log(req.body);
+  if (req.body.userType != "Student") {
+    admin_signup(req, res, next);
+  } else {
+    user_signup(req, res, next);
+  }
+});
+
+const user_signup = (req, res, next) => {
+  return;
+};
+
+const admin_signup = (req, res, next) => {
   Admin.find({ email: req.body.email })
     .exec()
     .then((admin) => {
@@ -48,6 +60,6 @@ router.post("/", (req, res, next) => {
         });
       }
     });
-});
+};
 
 module.exports = router;
