@@ -7,8 +7,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
+const cookieSession = require("cookie-session");
 
 const mongo = require("mongoose");
+const { secret } = require("./config/auth.config");
 mongo.connect(process.env.DATABASE_URL, { usenewUrlParser: true });
 const db = mongo.connection;
 db.on("error", (error) => {
@@ -20,6 +22,13 @@ db.once("open", () => {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(
+  cookieSession({
+    name: "dsw-session",
+    secret: secret, // should use as secret environment variable
+    httpOnly: true,
+  })
+);
 
 const port = process.env.PORT || 3000;
 app.use("/signup", signup);
