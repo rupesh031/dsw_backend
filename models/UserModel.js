@@ -5,7 +5,7 @@ var crypto = require("crypto");
 const validator = require("validator");
 
 const UsersSchema = new mongo.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
   },
@@ -15,20 +15,20 @@ const UsersSchema = new mongo.Schema({
     required: true,
     validate: [validator.isEmail, "please provide a valid email"],
   },
-  phone: {
-    type: String,
-    required: true,
-  },
+  //   phone: {
+  //     type: String,
+  //     required: true,
+  //   },
   password: {
     type: String,
     required: true,
     minlength: 8,
   },
 
-  passwordconfirm: {
-    type: String,
-    required: true,
-  },
+  //   passwordconfirm: {
+  //     type: String,
+  //     required: true,
+  //   },
   type: {
     type: String,
     required: true,

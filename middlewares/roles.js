@@ -11,18 +11,22 @@ const role = async (req, res, next) => {
       if (admin.length >= 1) {
         console.log(admin[0].type);
         userType = admin[0].type;
-      } else {
-        User.find({ email: req.body.email })
-          .exec()
-          .then((user) => {
-            if (user.length >= 1) {
-              userType = user[0].type;
-            } else {
-              userType = null;
-            }
-          });
+        return;
       }
     });
+
+  console.log("userLog");
+  await User.findOne({ email: req.body.email })
+    .exec()
+    .then((user) => {
+      if (user) {
+        console.log(user);
+        userType = user.type;
+      } else {
+        userType = null;
+      }
+    });
+
   console.log(userType);
   return userType;
 
