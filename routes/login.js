@@ -6,7 +6,7 @@ const user_signin = require("../controllers/studentauth");
 
 router.post("/", async (req, res, next) => {
   console.log("SignIn request");
-  const type = await role(req, res, next);
+  const type = await role(req.body.email);
   console.log(type);
   if (type != null) {
     if (type != "Student") {

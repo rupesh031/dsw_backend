@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
+const event = require("./routes/event");
 const cookieSession = require("cookie-session");
 
 const mongo = require("mongoose");
@@ -19,6 +20,8 @@ db.on("error", (error) => {
 db.once("open", () => {
   console.log("Mongodb connection complete");
 });
+app.use(express.static(__dirname + "public")); //Serves resources from public folder
+app.use("/images", express.static(__dirname + "/public/EventCovers"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -33,6 +36,7 @@ app.use(
 const port = process.env.PORT || 3000;
 app.use("/signup", signup);
 app.use("/login", login);
+app.use("/event", event);
 
 app.listen(port);
 console.log(`app is listening at ${port}`);
