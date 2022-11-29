@@ -40,7 +40,7 @@ const FoundimgSchema = new mongo.Schema({
 }
 );
 FoundimgSchema.virtual("imagePath").get(function () {
-    return path.join("/", ImagePath, this.cover);
+    return path.join("/", ImagePath, this.img);
   });
 
 const Foundimg = mongo.model('foundimgs',FoundimgSchema);
