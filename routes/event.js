@@ -28,7 +28,7 @@ router.post("/post", upload.single("cover"), async (req, res, next) => {
   const filename = req.file != null ? req.file.filename : null;
   console.log(req.file);
   if (type != null) {
-    if (type == "Coordinator" || type == "General Secratary") {
+    if (type != "Student") {
       const event = new Event({
         _id: new mongoose.Types.ObjectId(),
         by: req.body.by,

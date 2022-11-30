@@ -28,6 +28,7 @@ const user_signin = (req, res) => {
           username: user.username,
           email: user.email,
           type: user.type,
+          club: user.club,
         });
       } else {
         return res.status(404).send({ error: "User Not found." });
