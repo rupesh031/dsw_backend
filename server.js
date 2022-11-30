@@ -45,12 +45,6 @@ app.get("/", (req, res) => { res.send("working") });
 // });
 
 
-// app.use(
-//   urlencoded({
-//     extended: true,
-//   })
-// );
-
 
 
 const port = process.env.PORT || 3000;
