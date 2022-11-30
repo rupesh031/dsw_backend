@@ -1,5 +1,7 @@
 const express = require("express");
-const role = require("../middlewares/roles");
+
+const role = require("../middleware/roles");
+
 const router = express.Router();
 const admin_signin = require("../controllers/admin_auth");
 const user_signin = require("../controllers/studentauth");

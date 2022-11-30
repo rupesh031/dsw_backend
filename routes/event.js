@@ -1,5 +1,6 @@
 const express = require("express");
-const role = require("../middlewares/roles");
+const role = require("../middleware/roles");
+
 const Event = require("../models/event");
 const path = require("path");
 const uploadPath = path.join("public", Event.CoverPath);
