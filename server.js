@@ -7,6 +7,12 @@ const cors = require("cors");
 const path = require('path');
 const mongoose = require("mongoose");
 const imageRoutes =require('./routes/lost_imgRoutes');
+const signup = require("./routes/signup");
+const login = require("./routes/login");
+const event = require("./routes/event");
+const manage = require("./routes/manage");
+const cookieSession = require("cookie-session");
+const { secret } = require("./config/auth.config");
 
 console.log("hello");
 const app = express();
@@ -24,7 +30,15 @@ mongoose.connect(process.env.DATABASE_URL,
      console.log('Connection to dsw failed', error)
  });
  app.use(express.static(__dirname + "public")); //Serves resources from public folder
-app.use("/images", express.static(__dirname + "/public/FoundImage"));
+app.use("/Images", express.static(__dirname + "/public/FoundImage"));
+app.use("/images", express.static(__dirname + "/public/EventCovers"));
+app.use(
+    cookieSession({
+      name: "dsw-session",
+      secret: secret, // should use as secret environment variable
+      httpOnly: true,
+    })
+  );
 
 // app.use((req, res, next) => {
 //     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,7 +46,12 @@ app.use("/images", express.static(__dirname + "/public/FoundImage"));
 //     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 //     next();
 // });
-app.use('/api/post', imageRoutes );
+app.use("/signup", signup);
+app.use("/login", login);
+app.use("/event", event);
+app.use("/manage", manage);
+
+app.use('/lost', imageRoutes );
 app.get("/", (req, res) => { res.send("working") });
 
 // const db = mongo.connection;
