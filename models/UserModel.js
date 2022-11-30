@@ -24,6 +24,9 @@ const UsersSchema = new mongo.Schema({
     required: true,
     minlength: 8,
   },
+  club: {
+    type: String,
+  },
 
   //   passwordconfirm: {
   //     type: String,
