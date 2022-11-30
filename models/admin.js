@@ -1,4 +1,3 @@
-const { Int32 } = require("mongodb");
 const { default: mongoose } = require("mongoose");
 const mongo = require("mongoose");
 var crypto = require("crypto");
@@ -24,6 +23,9 @@ const AdminSchema = new mongo.Schema({
   type: {
     type: String,
     required: true,
+  },
+  club: {
+    type: String,
   },
 });
 const Admin = mongoose.model("Admins", AdminSchema);

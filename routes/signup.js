@@ -38,6 +38,7 @@ const user_signup = (req, res, next) => {
               password: hash,
               username: req.body.username,
               type: req.body.userType,
+              club: req.body.club,
             });
             user
               .save()
@@ -81,6 +82,7 @@ const admin_signup = (req, res, next) => {
               password: hash,
               username: req.body.username,
               type: req.body.userType,
+              club: req.body.club,
             });
             admin
               .save()

@@ -8,6 +8,7 @@ const cors = require("cors");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const event = require("./routes/event");
+const manage = require("./routes/manage");
 const cookieSession = require("cookie-session");
 
 const mongo = require("mongoose");
@@ -37,6 +38,7 @@ const port = process.env.PORT || 3000;
 app.use("/signup", signup);
 app.use("/login", login);
 app.use("/event", event);
+app.use("/manage", manage);
 
 app.listen(port);
 console.log(`app is listening at ${port}`);
